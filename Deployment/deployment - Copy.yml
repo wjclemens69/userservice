@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagramapps
+  labels:
+    app: udagramapps
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagramapps
+  template:
+    metadata:
+      labels:
+        app: udagramapps
+    spec:
+      containers:
+      - name: feedservice
+        image: wjclemens69/feedservice
+      - name: userservice
+        image: wjclemens69/userservice
+        ports:
+        - containerPort: 80
+        env:
+        - name: aws_media_bucket
+          value: "l4project-758290640424-dev"
+        - name: AWS_PROFILE
+          value: "default" 
+        - name: aws_region
+          value: "us-east-1"
+        - name: AWS_REGION
+          value: "us-east-1"
+        - name: DATABASE_URL
+          value: "postgresql://db/clemenslesson4db"
+        - name: POSTGRES_DB
+          value: "clemensdblesson4"  
+        - name: POSTGRES_HOST
+          value: "clemensdbilesson4.cnjtgqm0k1qq.us-east-1.rds.amazonaws.com"
+        - name: POSTGRES_PASSWORD
+          value: "SusanitiEmily08!"
+        - name: POSTGRES_USERNAME
+          value: "wjclemens69"
+          
